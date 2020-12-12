@@ -8,6 +8,7 @@ const resolveOutput = require('./resolve-output')
 const installPlugins = require('./install-plugins')
 
 const logger = require('../logger')
+const util = require('util')
 
 function compile (config) {
   const compiler = webpack(config)
@@ -27,11 +28,11 @@ function compile (config) {
       const info = stats.toJson()
 
       if (stats.hasErrors()) {
-        info.errors.forEach(e => logger.error(e))
+        info.errors.forEach(e => logger.error(util.inspect(e, false, null, true)))
       }
 
       if (stats.hasWarnings()) {
-        info.warnings.forEach(w => logger.warn(w))
+        info.warnings.forEach(w => logger.warn(util.inspect(w, false, null, true)))
       }
 
       return mfs

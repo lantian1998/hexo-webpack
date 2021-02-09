@@ -28,11 +28,11 @@ function compile (config) {
       const info = stats.toJson()
 
       if (stats.hasErrors()) {
-        info.errors.forEach(e => logger.error(util.inspect(e, false, null, true)))
+        info.errors.forEach(e => logger.error(util.inspect(e.message, false, null, true)))
       }
 
       if (stats.hasWarnings()) {
-        info.warnings.forEach(w => logger.warn(util.inspect(w, false, null, true)))
+        info.warnings.forEach(w => logger.warn(util.inspect(w.message, false, null, true)))
       }
 
       return mfs
